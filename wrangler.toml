@@ -1,0 +1,7 @@
+name = "wander-notes-site"
+main = "workers/site/index.js"
+compatibility_date = "2026-07-23"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"

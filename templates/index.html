@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="hero">
+    <h1>{{ section.title }}</h1>
+    {{ section.content | safe }}
+  </section>
+
+  <section class="category-grid" aria-label="Site categories">
+    {% for subsection_path in section.subsections %}
+      {% set subsection = get_section(path=subsection_path) %}
+      <article class="card">
+        <h2><a href="{{ subsection.permalink }}">{{ subsection.title }}</a></h2>
+        {% if subsection.description %}
+          <p>{{ subsection.description }}</p>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </section>
+{% endblock content %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="{{ config.default_language }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+    <meta name="description" content="{% block description %}{{ config.description }}{% endblock description %}">
+    <link rel="stylesheet" href="{{ get_url(path='styles.css') }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="brand">
+          <a href="/" class="brand-link">{{ config.title }}</a>
+          <p class="tagline">{{ config.extra.site_tagline }}</p>
+        </div>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="/walks/">Walks</a>
+          <a href="/thoughts/">Thoughts</a>
+          <a href="/books/">Books</a>
+          <a href="/places/">Places</a>
+          <a href="/about/">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      {% block content %}{% endblock content %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© {{ now() | date(format="%Y") }} {{ config.title }}</p>
+      </div>
+    </footer>
+  </body>
+</html>
