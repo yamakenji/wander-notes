@@ -1,0 +1,14 @@
+base_url = "https://wandernotes.cc"
+title = "Wander Notes"
+description = "散歩、読書、場所、考えごとを記録する日本語のノート"
+default_language = "ja"
+compile_sass = false
+build_search_index = false
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+
+[markdown]
+render_emoji = true
+
+[extra]
+site_tagline = "歩きながら考えたことを残すノート"
