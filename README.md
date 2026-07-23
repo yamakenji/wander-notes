@@ -35,5 +35,5 @@ zola build
 ```
 
 ```bash
-cargo test --manifest-path /home/runner/work/wander-notes/wander-notes/api/Cargo.toml
+cargo test --manifest-path api/Cargo.toml
 ```
