@@ -4,16 +4,19 @@ Wander Notes は、散歩・思索・読書・場所について記録する日�
 
 ## 構成
 
-- `config.toml` — Zola のサイト設定
-- `content/` — Markdown コンテンツ
-- `templates/` — Zola テンプレート
-- `static/` — 配信用の静的アセット
-- `workers/site/` — `public/` を配信する Cloudflare Worker
-- `api/` — 将来 `https://api.wandernotes.cc` で公開する Rust API サービスの土台
+```
+wander-notes/
+├── site/            Zola で生成する静的ブログ（config / content / templates / static）
+├── workers/
+│   └── api/         将来 api.wandernotes.cc で公開する Rust サービスの土台（現状はスタブ）
+├── docs/            ドキュメント
+├── README.md
+└── .gitignore
+```
 
 ## 公開方針
 
-- `https://wandernotes.cc` は Zola で生成した静的ブログを公開
+- `https://wandernotes.cc` は Zola で生成した静的ブログを **Cloudflare Pages** で公開
 - `https://api.wandernotes.cc` は Rust + Cloudflare Workers の別サービスとして後から追加
 
 ## 初期カテゴリ
@@ -27,13 +30,21 @@ Wander Notes は、散歩・思索・読書・場所について記録する日�
 ## ローカル確認
 
 ```bash
-zola serve
+# サイト（site/ ディレクトリ内で実行）
+cd site
+zola serve   # ライブリロード付きの開発サーバ
+zola build   # public/ に静的サイトを生成
 ```
 
 ```bash
-zola build
+# API
+cargo test --manifest-path workers/api/Cargo.toml
 ```
 
-```bash
-cargo test --manifest-path api/Cargo.toml
-```
+## デプロイ
+
+サイトは Cloudflare Pages で配信します。Pages のビルド設定は次のとおりです。
+
+- Build command: `zola build`
+- Build output directory: `public`
+- Root directory: `site`
